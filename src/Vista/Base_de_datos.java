@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Sebastian
@@ -16,6 +20,13 @@ public class Base_de_datos extends javax.swing.JFrame {
      */
     public Base_de_datos() {
         initComponents();
+        this.setSize(1000,596);
+        setLocationRelativeTo(null);
+        ImageIcon IMG = new ImageIcon(getClass().getResource("/Imagenes/iniciar sesion.jpg"));
+        Icon fondo1 = new ImageIcon(IMG.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(),Image.SCALE_DEFAULT));
+        fondo.setIcon(fondo1);
+        
+        this.repaint();
     }
 
     /**
@@ -27,21 +38,50 @@ public class Base_de_datos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btn2 = new javax.swing.JButton();
+        btn1 = new javax.swing.JButton();
+        fondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jButton1.setText("jButton1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Escoja una Base de Datos");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 590, 60));
+
+        btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/xampp.png"))); // NOI18N
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 255, 140, 93));
+
+        btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PostgreSQL.jpg"))); // NOI18N
+        btn1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PostgreSQL.jpg"))); // NOI18N
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 255, 144, 93));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +119,10 @@ public class Base_de_datos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn1;
+    private javax.swing.JButton btn2;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
