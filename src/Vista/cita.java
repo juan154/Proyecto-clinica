@@ -197,7 +197,7 @@ public class cita extends javax.swing.JPanel {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         Agregar_cita a1 = new Agregar_cita();
-        a1.setBD(BD);
+        a1.setBD(BD,this);
         a1.setVisible(true);
     }//GEN-LAST:event_AgregarActionPerformed
     public int vacio(JTextField x) {

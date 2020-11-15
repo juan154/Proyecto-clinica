@@ -23,7 +23,7 @@ public class Conexion {
             case "postgres":
                 url = "jdbc:postgresql://localhost:5432/clinica";
                 user = "postgres";
-                password = "Cristiangarzon123";
+                password = "CLAVE POSTGRES";
                 try {
                     cn = DriverManager.getConnection(url, user, password);
                     if (cn != null) {
@@ -37,7 +37,7 @@ public class Conexion {
             case "mysql":
                 url = "jdbc:mysql://localhost/clinica?useSSL=false&useTimezone=true&serverTimezone=UTC";
                 user = "root";
-                password = "root";
+                password = "CLAVE MYSQL";
                 try {
                     cn = DriverManager.getConnection(url, user, password);
                     JOptionPane.showMessageDialog(null, "Conectado a MySql. \n" + cn.toString());
@@ -92,6 +92,14 @@ public class Conexion {
             st.executeUpdate("update cita set nom_doctor= '" + doctor + "', correo='" + correo + "', fecha='" + fecha + "', hora='" + hora + "' where cod_cita=" + cod_cita);
         } catch (Exception e) {
             System.out.println("error al actualizar el personal" + e);
+        }
+    }
+    public void agregar_c(int cod_cita, String paciente,String doctor, String correo, String fecha, String hora){
+        try {
+            st = cn.createStatement();
+            st.executeUpdate("INSERT INTO cita VALUES("+cod_cita+",'" + paciente + "','" + doctor + "','" + correo + "','" + fecha + "','" + hora + "')");
+        } catch (SQLException e) {
+            System.out.println("error al agregar una cita " + e);
         }
     }
 }
