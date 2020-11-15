@@ -5,27 +5,23 @@
  */
 package Vista;
 
+import Modelo.Conexion;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author Sebastian
- */
 public class Base_de_datos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Base_de_datos
-     */
+    Conexion BD;
+
     public Base_de_datos() {
         initComponents();
-        this.setSize(1000,596);
+        this.setSize(1000, 596);
         setLocationRelativeTo(null);
         ImageIcon IMG = new ImageIcon(getClass().getResource("/Imagenes/iniciar sesion.jpg"));
-        Icon fondo1 = new ImageIcon(IMG.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(),Image.SCALE_DEFAULT));
+        Icon fondo1 = new ImageIcon(IMG.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(), Image.SCALE_DEFAULT));
         fondo.setIcon(fondo1);
-        
+
         this.repaint();
     }
 
@@ -40,8 +36,8 @@ public class Base_de_datos extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btn2 = new javax.swing.JButton();
-        btn1 = new javax.swing.JButton();
+        mysql = new javax.swing.JButton();
+        postgres = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
@@ -54,38 +50,45 @@ public class Base_de_datos extends javax.swing.JFrame {
         jLabel1.setText("Escoja una Base de Datos");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 590, 60));
 
-        btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/xampp.png"))); // NOI18N
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        mysql.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/xampp.png"))); // NOI18N
+        mysql.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                mysqlActionPerformed(evt);
             }
         });
-        getContentPane().add(btn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 255, 140, 93));
+        getContentPane().add(mysql, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 255, 140, 93));
 
-        btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PostgreSQL.jpg"))); // NOI18N
-        btn1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PostgreSQL.jpg"))); // NOI18N
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        postgres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PostgreSQL.jpg"))); // NOI18N
+        postgres.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PostgreSQL.jpg"))); // NOI18N
+        postgres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
+                postgresActionPerformed(evt);
             }
         });
-        getContentPane().add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 255, 144, 93));
+        getContentPane().add(postgres, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 255, 144, 93));
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn2ActionPerformed
+    private void mysqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mysqlActionPerformed
+        BD = new Conexion("mysql");
+        BD.conectar();
+        inicio();
+    }//GEN-LAST:event_mysqlActionPerformed
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    private void postgresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postgresActionPerformed
+        BD = new Conexion("postgres");
+        BD.conectar();
+        inicio();
+        
+    }//GEN-LAST:event_postgresActionPerformed
+    public void inicio(){
+        iniciar_sesion run = new iniciar_sesion();
+        run.getBD(BD);
+        run.setVisible(true);
+        dispose();
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -119,10 +122,10 @@ public class Base_de_datos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton mysql;
+    private javax.swing.JButton postgres;
     // End of variables declaration//GEN-END:variables
 }

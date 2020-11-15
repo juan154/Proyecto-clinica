@@ -1,24 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vista;
 
-import java.awt.Graphics;
+import Modelo.Conexion;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Sebastian
- */
 public class iniciar_sesion extends javax.swing.JFrame {
+    Conexion BD;
 
-    /**
-     * Creates new form iniciar_sesion
-     */
+    public void getBD(Conexion BD) {
+        this.BD = BD;
+    }
     public iniciar_sesion() {
         
         initComponents();
@@ -48,7 +42,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         usuario = new javax.swing.JTextField();
         volver = new javax.swing.JButton();
-        contraseña = new javax.swing.JPasswordField();
+        clave = new javax.swing.JPasswordField();
         ingresar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
@@ -83,19 +77,29 @@ public class iniciar_sesion extends javax.swing.JFrame {
 
         volver.setBackground(new java.awt.Color(102, 204, 255));
         volver.setText("Volver");
-        getContentPane().add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
-
-        contraseña.setText("jPasswordField1");
-        contraseña.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contraseñaMouseClicked(evt);
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
             }
         });
-        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 291, 180, -1));
+        getContentPane().add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
+
+        clave.setText("jPasswordField1");
+        clave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                claveMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clave, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 291, 180, -1));
 
         ingresar.setBackground(new java.awt.Color(102, 204, 255));
         ingresar.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         ingresar.setText("Ingresar");
+        ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarActionPerformed(evt);
+            }
+        });
         getContentPane().add(ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 140, 60));
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 500));
 
@@ -107,9 +111,32 @@ public class iniciar_sesion extends javax.swing.JFrame {
         usuario.setText("");
     }//GEN-LAST:event_usuarioMouseClicked
 
-    private void contraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseñaMouseClicked
-       contraseña.setText("");
-    }//GEN-LAST:event_contraseñaMouseClicked
+    private void claveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_claveMouseClicked
+       clave.setText("");
+    }//GEN-LAST:event_claveMouseClicked
+
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
+        String user = usuario.getText().trim();
+        String pass = clave.getText().trim();
+        if(BD.validar(user, pass)){
+            Clinica c1 = new Clinica();
+            c1.getBD(BD);
+            dispose();
+            c1.setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "datos incorrectos");
+        }
+    }//GEN-LAST:event_ingresarActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        int eleccion = JOptionPane.showConfirmDialog(null, "¿Está seguro de volver a elegir una base de datos?",
+                "MENSAJE DE CONFIRMACION", JOptionPane.WARNING_MESSAGE);
+        if (eleccion == JOptionPane.YES_OPTION) {
+            Base_de_datos base = new Base_de_datos();
+            base.setVisible(true);
+            setVisible(false);  
+        }
+    }//GEN-LAST:event_volverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,7 +174,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField contraseña;
+    private javax.swing.JPasswordField clave;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton ingresar;
     private javax.swing.JLabel jLabel1;

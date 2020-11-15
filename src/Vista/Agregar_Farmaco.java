@@ -49,7 +49,7 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
         jLabel2.setText("Id Farmaco");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Describcion ");
+        jLabel3.setText("descripcion");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
