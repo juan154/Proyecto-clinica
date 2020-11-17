@@ -191,8 +191,10 @@ public class Agregar_usuario extends javax.swing.JFrame {
             BD.agregar_usuario(Integer.parseInt(jTextField1.getText().trim()), jTextField2.getText().trim(), jTextField3.getText().trim(), Integer.parseInt(jTextField4.getText().trim()), jComboBox1.getSelectedItem().toString(), jComboBox3.getSelectedItem().toString());
             JOptionPane.showMessageDialog(null, "Usuario Agregado", "Agregando Usuario", JOptionPane.INFORMATION_MESSAGE);
             u1.mostrar_datos("");
-
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
