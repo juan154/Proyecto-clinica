@@ -3,13 +3,15 @@ package Controlador;
 import Modelo.Conexion;
 
 public class Lista_cita {
+
     Nodo_cita ultimo;
     int tamanio;
 
-    public Lista_cita(){
+    public Lista_cita() {
         ultimo = null;
         tamanio = 0;
     }
+
     public Nodo_cita getUltimo() {
         return ultimo;
     }
@@ -25,12 +27,14 @@ public class Lista_cita {
     public void setTamanio(int tamanio) {
         this.tamanio = tamanio;
     }
-    public boolean vacio(){
+
+    public boolean vacio() {
         return ultimo == null;
     }
-    public Lista_cita add(int cod_cita, String paciente, String doctor, String correo, String fecha, String hora){
-        Nodo_cita p = new Nodo_cita(cod_cita,paciente,doctor,correo,fecha,hora);
-        if(!vacio()){
+
+    public Lista_cita add(int cod_cita, String paciente, String doctor, String correo, String fecha, String hora) {
+        Nodo_cita p = new Nodo_cita(cod_cita, paciente, doctor, correo, fecha, hora);
+        if (!vacio()) {
             p.sig = ultimo.sig;
             ultimo.sig = p;
         } else {
@@ -39,10 +43,12 @@ public class Lista_cita {
         tamanio++;
         return this;
     }
-    public String[][] tabla(Conexion BD,String filtro){
-        Lista_cita lista = BD.mostrar_citas(filtro);
-        if(!lista.vacio()){
-            String [][] datos = new String[lista.getTamanio()][6];
+
+    public String[][] tabla(Conexion BD, String filtro){
+        Lista_cita lista = new Lista_cita();
+        lista = BD.mostrar_citas(filtro);
+        if (!lista.vacio()) {
+            String[][] datos = new String[lista.getTamanio()][6];
             Nodo_cita primero = lista.ultimo.sig;
             int i = 0;
             do {
@@ -57,7 +63,7 @@ public class Lista_cita {
             } while (primero != lista.ultimo.sig);
             return datos;
         } else {
-            String Sin_datos[][] = new String [0][0];
+            String Sin_datos[][] = new String[0][0];
             return Sin_datos;
         }
     }

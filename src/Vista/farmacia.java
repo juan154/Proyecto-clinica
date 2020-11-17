@@ -1,17 +1,45 @@
 package Vista;
 
+import Controlador.Lista_farmacia;
 import Modelo.Conexion;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class farmacia extends javax.swing.JPanel {
 
     Conexion BD;
+    int id_farmacia;
 
     public farmacia() {
         initComponents();
+        bloqueo();
     }
 
+    public void bloqueo(){
+     jTextArea1.setEnabled(false);
+     jTextField2.setEnabled(false);
+     jTextField3.setEnabled(false);
+     jTextField4.setEnabled(false);
+     jButton4.setEnabled(false);  
+     jTextArea1.setText("");
+     jTextField2.setText("");
+     jTextField3.setText("");
+     jTextField4.setText("");
+    }
+    
     public void getBD(Conexion BD) {
         this.BD = BD;
+    }
+    
+    
+    public void mostrar_datos(String filtro){
+        Lista_farmacia lista = new Lista_farmacia();
+        String cabecera[] = {"ID FARMACO","DESCRIPCIÓN","CANTIDAD","NOMBRE"};
+        String info [][] = lista.tabla(BD, filtro);
+        jTable1 = new JTable(info,cabecera);
+        jScrollPane1.setViewportView(jTable1);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,16 +60,22 @@ public class farmacia extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("FARMACIA");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Filtrar");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,13 +106,33 @@ public class farmacia extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setText("ID FARMACO");
 
-        jButton1.setText("Actualizar");
-
         jButton2.setText("Eliminar ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Agregar ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Actualizar ");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Consultar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,9 +163,9 @@ public class farmacia extends javax.swing.JPanel {
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField4)))
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton5)
+                        .addGap(39, 39, 39)
                         .addComponent(jButton2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -145,8 +199,8 @@ public class farmacia extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton5))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -166,14 +220,79 @@ public class farmacia extends javax.swing.JPanel {
                             .addComponent(jButton4))))
                 .addGap(20, 20, 20))
         );
+
+        jButton5.getAccessibleContext().setAccessibleName("Consultar ");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        mostrar_datos(jTextField1.getText().trim());
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here: Actualizar
+        if(vacio(jTextArea1)+vacio(jTextField2)+vacio(jTextField3) != 3){
+            JOptionPane.showMessageDialog(null,"Error al modificar los datos");
+        }else{
+            BD.actualizar_farmaco(id_farmacia, jTextArea1.getText().trim(), Integer.parseInt(jTextField2.getText().trim()), jTextField3.getText().trim());
+            mostrar_datos("");
+            bloqueo();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here: Agregar
+        Agregar_Farmaco f1 = new Agregar_Farmaco();
+        f1.setBD(BD,this);
+        f1.setVisible(true);      
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here: Eliminar
+        if(jTable1.getSelectedRow() >= 0){
+            BD.eliminar_farmaco(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()));
+        }else{
+            JOptionPane.showMessageDialog(null,"Tiene que escoger una fila para eliminarla");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if(jTable1.getSelectedRow() >= 0){
+        jTextArea1.setEnabled(true);
+        jTextField2.setEnabled(true);
+        jTextField3.setEnabled(true);
+        jTextField4.setEnabled(true);
+        jTextArea1.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        jTextField2.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        jTextField3.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+        id_farmacia = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        }else{
+            JOptionPane.showMessageDialog(null, "Tiene que escoger una fila para modificarla");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    public int vacio(JTextArea x) {
+        if(x.getText().trim() == ""){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+    
+    public int vacio (JTextField x){
+        if(x.getText().trim() == ""){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

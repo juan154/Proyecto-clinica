@@ -90,6 +90,11 @@ public class cita extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
+        tabla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tablaKeyReleased(evt);
+            }
+        });
         contenedor.setViewportView(tabla);
 
         add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 51, 950, 132));
@@ -200,6 +205,10 @@ public class cita extends javax.swing.JPanel {
         a1.setBD(BD,this);
         a1.setVisible(true);
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void tablaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaKeyReleased
     public int vacio(JTextField x) {
         if (x.getText().trim() == "") {
             return 0;
