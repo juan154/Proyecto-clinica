@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
 public class iniciar_sesion extends javax.swing.JFrame {
     Conexion BD;
 
-    public void getBD(Conexion BD) {
+    public void setBD(Conexion BD) {
         this.BD = BD;
     }
+    
     public iniciar_sesion() {
         
         initComponents();
@@ -120,7 +121,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         String pass = clave.getText().trim();
         if(BD.validar(user, pass)){
             Clinica c1 = new Clinica();
-            c1.getBD(BD);
+            c1.setBD(BD);
             dispose();
             c1.setVisible(true);
         }else {

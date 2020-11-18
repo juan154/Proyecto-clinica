@@ -9,11 +9,11 @@ public class Nodo_usuario {
     int dni;
     String nombre;
     String correo;
-    int telefono;
+    String telefono;
     String tipo_usuario;
     String estado;
 
-    public Nodo_usuario(int dni, String nombre, String correo, int telefono, String tipo_usuario, String estado) {
+    public Nodo_usuario(int dni, String nombre, String correo, String telefono, String tipo_usuario, String estado) {
         this.dni = dni;
         this.nombre = nombre;
         this.correo = correo;
@@ -39,7 +39,7 @@ public class Nodo_usuario {
         return correo;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -67,7 +67,7 @@ public class Nodo_usuario {
         this.correo = correo;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

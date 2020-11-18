@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import Modelo.Conexion;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-/**
- *
- * @author Sebastian
- */
 public class Agregar_usuario extends javax.swing.JFrame {
 
     Conexion BD;
@@ -188,7 +178,7 @@ public class Agregar_usuario extends javax.swing.JFrame {
         if (vacio(jTextField1) + vacio(jTextField2) + vacio(jTextField3) + vacio(jTextField4) != 4) {
             JOptionPane.showMessageDialog(null, "Datos incompletos");
         } else {
-            BD.agregar_usuario(Integer.parseInt(jTextField1.getText().trim()), jTextField2.getText().trim(), jTextField3.getText().trim(), Integer.parseInt(jTextField4.getText().trim()), jComboBox1.getSelectedItem().toString(), jComboBox3.getSelectedItem().toString());
+            BD.agregar_usuario(Integer.parseInt(jTextField1.getText().trim()), jTextField2.getText().trim(), jTextField3.getText().trim(), jTextField4.getText().trim(), jComboBox1.getSelectedItem().toString(), jComboBox3.getSelectedItem().toString());
             JOptionPane.showMessageDialog(null, "Usuario Agregado", "Agregando Usuario", JOptionPane.INFORMATION_MESSAGE);
             u1.mostrar_datos("");
         }

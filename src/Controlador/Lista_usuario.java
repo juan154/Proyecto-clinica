@@ -35,7 +35,7 @@ public class Lista_usuario {
         return ultimo == null;
     }
 
-    public Lista_usuario add(int dni, String nombre, String correo, int telefono, String tipo_usuario, String estado) {
+    public Lista_usuario add(int dni, String nombre, String correo, String telefono, String tipo_usuario, String estado) {
         Nodo_usuario pull = new Nodo_usuario(dni,nombre,correo,telefono,tipo_usuario,estado);
         if(!vacio()){
             pull.sig = ultimo.sig;
@@ -58,7 +58,7 @@ public class Lista_usuario {
                 datos[i][0]=""+primero.getDni();
                 datos[i][1] = primero.getNombre();
                 datos[i][2] = primero.getCorreo();
-                datos[i][3] = ""+primero.getTelefono();
+                datos[i][3] = primero.getTelefono();
                 datos[i][4] = primero.getTipo_usuario();
                 datos[i][5] = primero.getEstado();
                 i++;

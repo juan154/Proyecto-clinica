@@ -1,30 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import Modelo.Conexion;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-/*
- * @author Daniel
- */
 public class Agregar_Farmaco extends javax.swing.JFrame {
-
-    
     Conexion BD;
     farmacia c1 ;
-    /**
-     * Creates new form Agregar_Farmaco
-     */
     public Agregar_Farmaco() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-     public void setBD(Conexion BD,farmacia c1) {
+     public void getBD(Conexion BD,farmacia c1) {
         this.c1 = c1;
         this.BD = BD;
     }
@@ -43,7 +30,7 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +44,7 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
         jLabel3.setText("descripcion");
 
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -73,10 +61,10 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Volver ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        volver.setText("Volver ");
+        volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                volverActionPerformed(evt);
             }
         });
 
@@ -114,7 +102,7 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1)
-                                    .addComponent(jButton2))))))
+                                    .addComponent(volver))))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,7 +127,7 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(volver))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -147,9 +135,7 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        if(vacio(jTextField1)+vacio(jTextField2)+vacio(jTextField3)+vacio(jTextArea1) != 6){
+        if(vacio(jTextField1)+vacio(jTextField2)+vacio(jTextField3)+vacio(jTextArea1) != 4){
             JOptionPane.showMessageDialog(null, "Datos incompletos");
         }else{
             BD.agregar_farmacia(Integer.parseInt(jTextField1.getText().trim()), jTextArea1.getText().trim(), Integer.parseInt(jTextField2.getText().trim()), jTextField3.getText().trim());
@@ -159,10 +145,10 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_volverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +203,6 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -228,6 +213,7 @@ public class Agregar_Farmaco extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 
     

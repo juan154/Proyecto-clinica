@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 public class Agregar_cita extends javax.swing.JFrame {
     Conexion BD;
     cita c1 ;
-    public void setBD(Conexion BD,cita c1) {
+    public void getBD(Conexion BD,cita c1) {
         this.c1 = c1;
         this.BD = BD;
     }

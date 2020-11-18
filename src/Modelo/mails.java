@@ -19,10 +19,10 @@ public class mails {
         p.setProperty("mail.smtp.port", "587");
         p.setProperty("mail.smtp.auth", "true");
         Session sesion = Session.getDefaultInstance(p);
-        String servidor = "CORREO DE LA CLINICA";
-        String clave = "CLAVE DE EL CORREO DE LA CLINICA";
+        String servidor = "clinicapatitooficial@gmail.com";
+        String clave = "Patito123";
         String asunto = "cita programada";
-        String text = "estimado cliente "+paciente+" su cita con el doctor "+doctor+" ya quedo programada, recuerde que se pide llegar 15 minutos antes de la hora acordada, para que pueda hacer la fila en recepcion, sin ningun tipo de contratiempos \n"+"Fecha: "+fecha+"\n"+"Hora"+hora+"\n"+"Gracias por contar con nosotros.";
+        String text = "estimado cliente "+paciente+" su cita con el doctor "+doctor+" ya quedo programada, recuerde que se pide llegar 15 minutos antes de la hora acordada, para que pueda hacer la fila en recepcion, sin ningun tipo de contratiempos \n"+"Fecha: "+fecha+"\n"+"Hora: "+hora+"\n"+"Gracias por contar con nosotros.";
         MimeMessage mensaje = new MimeMessage(sesion);
         try {
             mensaje.setFrom(new InternetAddress (servidor));

@@ -1,10 +1,6 @@
 package Controlador;
 
 import Modelo.Conexion;
-
-/*
- * @author daniel
- */
 public class Lista_farmacia {
 
     Nodo_farmacia ultimo;
@@ -52,7 +48,7 @@ public class Lista_farmacia {
         Lista_farmacia lista = new Lista_farmacia();
         lista = BD.mostrar_farmacos(filtro);
         if (!lista.vacio()) {
-            String[][] datos = new String[lista.getTamanio()][6];
+            String[][] datos = new String[lista.getTamanio()][4];
             Nodo_farmacia primero = lista.ultimo.sig;
             int i = 0;
             do {

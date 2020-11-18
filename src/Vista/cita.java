@@ -2,6 +2,7 @@ package Vista;
 
 import Controlador.Lista_cita;
 import Modelo.Conexion;
+import java.awt.Graphics;
 import javax.swing.*;
 
 public class cita extends javax.swing.JPanel {
@@ -12,6 +13,14 @@ public class cita extends javax.swing.JPanel {
         initComponents();
         bloqueo();
     }
+    @Override
+    public void paint(Graphics g) {
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/foto_cita.jpg"));;
+        g.drawImage(icon.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+        this.setOpaque(false);
+        super.paint(g);
+    }
+
     public void bloqueo(){
         paciente.setEnabled(false);
         doctor.setEnabled(false);
@@ -25,9 +34,11 @@ public class cita extends javax.swing.JPanel {
         fecha.setText("");
         hora.setText("");
     }
-    public void getBD(Conexion BD) {
+
+    public void setBD(Conexion BD) {
         this.BD = BD;
     }
+    
 
     public void mostrar_datos(String filtro) {
         Lista_cita lista = new Lista_cita();
@@ -202,7 +213,7 @@ public class cita extends javax.swing.JPanel {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         Agregar_cita a1 = new Agregar_cita();
-        a1.setBD(BD,this);
+        a1.getBD(BD, this);
         a1.setVisible(true);
     }//GEN-LAST:event_AgregarActionPerformed
 

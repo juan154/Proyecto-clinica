@@ -25,7 +25,7 @@ public class Conexion {
             case "postgres":
                 url = "jdbc:postgresql://localhost:5432/clinica";
                 user = "postgres";
-                password = "CLAVE POSTGRES";
+                password = "postgres";
                 try {
                     cn = DriverManager.getConnection(url, user, password);
                     if (cn != null) {
@@ -39,7 +39,7 @@ public class Conexion {
             case "mysql":
                 url = "jdbc:mysql://localhost/clinica?useSSL=false&useTimezone=true&serverTimezone=UTC";
                 user = "root";
-                password = "CLAVE MYSQL";
+                password = "root";
                 try {
                     cn = DriverManager.getConnection(url, user, password);
                     JOptionPane.showMessageDialog(null, "Conectado a MySql. \n" + cn.toString());
@@ -147,7 +147,7 @@ public class Conexion {
     public void actualizar_farmaco(int id_farmaco, String descripcion, int cantidad, String nombre) {
         try {
             st = cn.createStatement();
-            st.executeUpdate("UPDATE farmaco set descripcion='" + descripcion + "', cantidad=" + cantidad + ", nombre='" + nombre + "' WHEN id_farmaco=" + id_farmaco);
+            st.executeUpdate("UPDATE farmaco set descripcion='" + descripcion + "', cantidad=" + cantidad + ", nombre='" + nombre + "' where id_farmaco=" + id_farmaco);
         } catch (Exception e) {
             System.out.println("error al actualizar el farmaco" + e);
         }
@@ -160,7 +160,7 @@ public class Conexion {
             st = cn.createStatement();
             rs = st.executeQuery("SELECT * FROM usuario WHERE nombre LIKE '" + filtro + "%'");
             while (rs.next()) {
-                lista.add(Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3), Integer.parseInt(rs.getString(4)), rs.getString(5), rs.getString(6));
+                lista.add(Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
             }
         } catch (SQLException e) {
             System.out.println("Error en mostrar usuarios" + e);
@@ -168,7 +168,7 @@ public class Conexion {
         return lista;
     }
 
-    public void agregar_usuario(int dni, String nombre, String correo, int telefono, String tipo_usuario, String estado) {
+    public void agregar_usuario(int dni, String nombre, String correo, String telefono, String tipo_usuario, String estado) {
         try {
             st = cn.createStatement();
             st.executeUpdate("INSERT INTO usuario VALUES(" + dni + ",'" + nombre + "','" + correo + "'," + telefono + ",'" + tipo_usuario + "','" + estado + "')");
@@ -177,7 +177,7 @@ public class Conexion {
         }
     }
 
-    public void actualizar_usuario(int dni, String nombre, String correo, int telefono, String tipo_usuario, String estado) {
+    public void actualizar_usuario(int dni, String nombre, String correo, String telefono, String tipo_usuario, String estado) {
         try {
             st = cn.createStatement();
             st.executeUpdate("UPDATE usuario set nombre='"+nombre+"', correo='"+correo+"', telefono="+telefono+", tipo_usuario='"+tipo_usuario+"', estado='"+estado+"'  WHERE dni="+dni);
